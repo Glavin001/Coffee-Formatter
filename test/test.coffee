@@ -1,10 +1,9 @@
 # The test suite should be run with Mocha.
 
-# To install Mocha:
+# To run the test:
 
-#     sudo npm install mocha -g
-
-# Then run `mocha` in the base directory.
+#     npm install
+#     grunt test
 
 formatter = require '../lib/formatter'
 assert = require 'assert'

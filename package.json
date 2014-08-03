@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A CoffeeScript formatter",
   "main": "lib/formatter.js",
+  "bin":"./lib/cli.js",
   "directories": {
     "doc": "docs",
     "test": "test"

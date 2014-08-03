@@ -31,7 +31,7 @@ module.exports = (grunt) ->
 
     docco:
       docs:
-        src: ['src/*.litcoffee', 'src/*.coffee'],
+        src: ['src/*.litcoffee', 'src/*.coffee', 'test/*.litcoffee', 'test/*.coffee'],
         options:
           output: 'docs/'
           layout: 'linear'

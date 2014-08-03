@@ -1,4 +1,4 @@
-# Coffee-Formatter
+# Coffee-Formatter Lib
 
 ## Introduction
 
@@ -166,71 +166,48 @@ Note that the function should not shorten indentations.
 
       return trimTrailing newLine
 
-### Body
+Format a file which has specified end of line and encoding
 
-The body of this module does the following:
+    formatFile = (filename, endOfLine = '\n', encoding = 'utf8') ->
+      file = ''
+      lazy = new Lazy(fs.createReadStream filename, encoding: encoding)
 
-1. Parse command line.
-2. Read the files specified by the user.
-3. Perform formatting.
+      lazy.on 'end', ->
+        fs.writeFileSync filename, file
 
-We loop through `argv._`, which should be a list of filenames given by the user.
-
-    for filename in argv._
-
-Then we check if the extension is "coffee".  Literate CoffeeScript will also be supported at some point.
-
-      if (getExtension filename) isnt 'coffee'
-        console.log
-        "#{filename} doesn't appear to be a CoffeeScript file. Skipping..."
-        console.log "Use --force to format it anyway."
-
-If the extension is "coffee", we proceed to the actual formatting.
-
-Firstly, we read the file line by line:
-
-      else
-        file = ''
-
-        lazy = new Lazy(fs.createReadStream filename, encoding: 'utf8')
-
-        lazy.on 'end', ->
-          fs.writeFileSync filename, file
-
-        lazy.lines
-          .forEach (line) ->
-            line = String(line)
-
-For some weird reason regarding IO, empty line is read as '0'. Therefore I have to check against 0.  This may cause weird bugs if a line actually contains only '0'.
-
-            if line != '0'
-              newLine = line
+      lazy.lines
+      .forEach (line) ->
+        line = String(line)
+        if line?.length
+          newLine = line
 
 `newLine` is used to hold a processed line.  `file` is used to hold the processed file.
 
 Now we add spaces before and after a binary operator, using the helper function:
 
-              newLine = formatTwoSpaceOperator newLine
+          newLine = formatTwoSpaceOperator newLine
 
 Do the same for single-space operators:
 
-              newLine = formatOneSpaceOperator newLine
+          newLine = formatOneSpaceOperator newLine
 
 Shorten any consecutive spaces into a single space:
 
-              newLine = shortenSpaces newLine
+          newLine = shortenSpaces newLine
 
-              file += newLine + '\n'
-            else
-              file += '\n'
+          file += newLine + endOfLine
+        else
+          file += endOfLine
 
-After the `forEach` completes, we have a file that is formatted line by line.  However, a comprehensive formatter needs to consider the code in a block level.  Specifically:
+After the function completes, we have a file that is formatted line by line. However, a comprehensive formatter needs to consider the code in a block level. Specifically:
 
 * Indentation should be formatted according to the parameters specified by the user.
 
 This haven't been implemented yet.
 
 ### Exports
+
+    exports.formatFile = formatFile
 
 #### Test Only
 
