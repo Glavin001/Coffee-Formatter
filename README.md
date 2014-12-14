@@ -1,22 +1,24 @@
 # Coffee-Formatter
 
-A formatter for CoffeeScript
-
-## Status
-
-The first version of this project is completed.  I will publish it on npm ASAP.
+> A formatter for CoffeeScript
 
 ## Usage
 
-	node formatter.js [Your Files]
+```bash
+node formatter.js [Your Files]
+```
 
 Or if you want to use `coffee`
 
-	coffee formatter.litcoffee [Your Files]
+```bash
+coffee formatter.litcoffee [Your Files]
+```
 
 Example:
 
-	coffee formatter.litcoffee sample/vdvc.coffee
+```bash
+coffee formatter.litcoffee sample/vdvc.coffee
+```
 
 ## Things to note
 
@@ -30,6 +32,9 @@ To run the test suite, install [Mocha](https://github.com/visionmedia/mocha) and
 
 1. Get rid of external dependencies.
 
+## Original Author
+
+Special thanks to [derekchiang](https://github.com/derekchiang) who originally developed this project.
 
 ## License
 
