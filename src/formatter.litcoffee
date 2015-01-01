@@ -34,8 +34,8 @@ We define a set of constants, including:
 
 Two-space operators.  These operators should have one space both before and after.
 
-    TWO_SPACE_OPERATORS = ['?=", '=', '+=', '-=', '==', '<=', '>=',
-                        '>', "<", '+', '-', '*', '/']
+    TWO_SPACE_OPERATORS = ['?=', '=', '+=', '-=', '==', '<=', '>=',
+                        '>', '<', '+', '-', '*', '/']
 
 One-space operators.  They should have one space after.
 
@@ -182,8 +182,7 @@ We loop through `argv._`, which should be a list of filenames given by the user.
 Then we check if the extension is "coffee".  Literate CoffeeScript will also be supported at some point.
 
       if (getExtension filename) isnt 'coffee'
-        console.log
-        "#{filename} doesn't appear to be a CoffeeScript file. Skipping..."
+        console.log "#{filename} doesn't appear to be a CoffeeScript file. Skipping..."
         console.log "Use --force to format it anyway."
 
 If the extension is "coffee", we proceed to the actual formatting.

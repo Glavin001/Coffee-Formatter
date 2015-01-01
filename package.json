@@ -1,6 +1,6 @@
 {
   "name": "coffee-formatter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A CoffeeScript formatter",
   "main": "lib/formatter.js",
   "directories": {
@@ -25,11 +25,12 @@
     "mocha": "^1.21.3"
   },
   "scripts": {
+    "prepublish": "grunt prepublish",
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/derekchiang/Coffee-Formatter.git"
+    "url": "git://github.com/Glavin001/Coffee-Formatter.git"
   },
   "keywords": [
     "CoffeeScript",
