@@ -37,10 +37,16 @@ describe '#formatTwoSpaceOperator()', ->
     assert.strictEqual 'k = 1 + 1 - 2 >= 3 <= 4 > 5 < 6',
       formattedLine
   it 'should make it so that there is only
-    one space before and after a compound assignment operator', ->
+    one space before and after a modulo (compound) assignment operator', ->
     originalLine = 'k   %%=    1234'
     formattedLine = formatter.formatTwoSpaceOperator originalLine
     assert.strictEqual 'k %%= 1234',
+      formattedLine
+  it 'should make it so that there is only
+    one space before and after a negation (compound) assignment operator', ->
+    originalLine = 'k   !=    true'
+    formattedLine = formatter.formatTwoSpaceOperator originalLine
+    assert.strictEqual 'k != true',
       formattedLine
 
 describe '#formatOneSpaceOperator()', ->
